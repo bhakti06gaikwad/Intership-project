@@ -203,7 +203,3 @@ Contributions, issues, and feature requests are welcome.
 4. Push to your branch.
 5. Open a Pull Request.
 
-
----
-
-⭐ If you like this project, consider giving it a Star on GitHub.
