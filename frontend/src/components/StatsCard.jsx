@@ -1,8 +1,11 @@
 function StatsCard({ title, value }) {
   return (
-    <div className="card">
-      <h3>{value}</h3>
+    <div className="stats-card">
+
+      <h1>{value}</h1>
+
       <p>{title}</p>
+
     </div>
   );
 }
