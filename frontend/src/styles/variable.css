@@ -1,0 +1,50 @@
+.variable-container{
+display:flex;
+background:#f4f7fc;
+min-height:100vh;
+}
+
+.variable-content{
+flex:1;
+padding:30px;
+}
+
+.variable-filter{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:25px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+}
+
+.variable-filter select{
+padding:10px;
+width:220px;
+font-size:16px;
+border-radius:8px;
+}
+
+.variable-table{
+width:100%;
+background:white;
+border-collapse:collapse;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+overflow:hidden;
+border-radius:12px;
+}
+
+.variable-table th{
+background:#2563eb;
+color:white;
+padding:15px;
+}
+
+.variable-table td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+.variable-table tr:hover{
+background:#f8fafc;
+}
