@@ -1,12 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatsCard from "../components/StatsCard";
 
+import "../styles/dashboard.css";
+
 function Dashboard() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
+  const [stats, setStats] = useState({
+    variables: 0,
+    uploads: 0,
+    events: 0,
+    latest_file: "",
+    latest_time: "",
+  });
+
+  useEffect(() => {
+    loadDashboard();
+  }, []);
+
+  const loadDashboard = () => {
+    axios
+      .get("http://127.0.0.1:8000/api/dashboard/")
+      .then((res) => {
+        setStats(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const uploadFile = async () => {
     if (!file) {
@@ -20,26 +43,16 @@ function Dashboard() {
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/upload/",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        formData
       );
-
-      console.log(response.data);
 
       setResult(response.data);
 
       alert("Upload Successful!");
+
+      loadDashboard();
     } catch (error) {
-      console.error(error);
-
-      if (error.response) {
-        console.log(error.response.data);
-      }
-
+      console.log(error);
       alert("Upload Failed!");
     }
   };
@@ -49,12 +62,15 @@ function Dashboard() {
       <Navbar />
 
       <div className="container">
+
         <Sidebar />
 
         <main className="content">
+
           <h1>PyChronicle Dashboard</h1>
 
           <div className="upload-box">
+
             <h2>Upload Python File</h2>
 
             <input
@@ -63,65 +79,102 @@ function Dashboard() {
               onChange={(e) => setFile(e.target.files[0])}
             />
 
-            <button onClick={uploadFile}>Analyze</button>
+            <button onClick={uploadFile}>
+              Analyze
+            </button>
+
           </div>
 
           {result && (
-            <div className="upload-box">
+
+            <div className="result-box">
+
               <h2>Analysis Result</h2>
 
-              <p>
-                <strong>Filename:</strong> {result.filename}
-              </p>
+              <p><strong>Filename :</strong> {result.filename}</p>
 
-              <p>
-                <strong>Variables:</strong> {result.variable_count}
-              </p>
+              <p><strong>Variables :</strong> {result.variable_count}</p>
 
-              <p>
-                <strong>Functions:</strong> {result.function_count}
-              </p>
+              <p><strong>Functions :</strong> {result.function_count}</p>
 
               <h3>Variable List</h3>
 
               <ul>
+
                 {result.variables.map((item, index) => (
+
                   <li key={index}>{item}</li>
+
                 ))}
+
               </ul>
 
               <h3>Function List</h3>
 
               <ul>
+
                 {result.functions.map((item, index) => (
+
                   <li key={index}>{item}</li>
+
                 ))}
+
               </ul>
+
             </div>
+
           )}
 
           <div className="cards">
+
             <StatsCard
               title="Variables"
-              value={result ? result.variable_count : 0}
+              value={stats.variables}
             />
 
             <StatsCard
-              title="Assignments"
-              value={result ? result.variables.length : 0}
+              title="Uploads"
+              value={stats.uploads}
             />
 
             <StatsCard
-              title="Functions"
-              value={result ? result.function_count : 0}
+              title="Events"
+              value={stats.events}
             />
 
             <StatsCard
-              title="Execution Time"
-              value="AST"
+              title="Latest File"
+              value={stats.latest_file || "-"}
             />
+
           </div>
+
+          <div className="dashboard-box">
+
+            <h2>Recent Upload</h2>
+
+            <p>
+
+              <strong>Filename :</strong>
+
+              {stats.latest_file || "No file"}
+
+            </p>
+
+            <p>
+
+              <strong>Uploaded :</strong>
+
+              {stats.latest_time
+                ? new Date(stats.latest_time).toLocaleString()
+                : "-"}
+
+            </p>
+
+          </div>
+
         </main>
+
       </div>
     </>
   );
