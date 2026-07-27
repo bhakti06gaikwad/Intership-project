@@ -56,3 +56,7 @@ class HistoryAPIView(ListAPIView):
 
     queryset = ExecutionEvent.objects.all().order_by("-timestamp")
     serializer_class = ExecutionEventSerializer
+
+class TimelineAPIView(ListAPIView):
+    queryset = ExecutionEvent.objects.all().order_by("timestamp")
+    serializer_class = ExecutionEventSerializer
