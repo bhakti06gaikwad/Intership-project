@@ -64,3 +64,28 @@
     background:#bdbdbd;
     cursor:not-allowed;
 }
+
+@media (max-width:768px){
+
+.container{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+    height:auto;
+}
+
+.content{
+    padding:15px;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+button{
+    width:100%;
+}
+
+}
