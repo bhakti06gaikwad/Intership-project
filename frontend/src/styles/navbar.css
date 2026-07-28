@@ -28,3 +28,17 @@ transition:.3s;
 .nav-links a:hover{
 color:#93c5fd;
 }
+
+@media (max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.nav-links{
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+}
