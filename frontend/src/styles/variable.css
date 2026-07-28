@@ -1,50 +1,109 @@
-.variable-container{
-display:flex;
-background:#f4f7fc;
-min-height:100vh;
+.variable-header{
+    margin-bottom:25px;
 }
 
-.variable-content{
-flex:1;
-padding:30px;
+.variable-header h1{
+    font-size:34px;
+    color:#1e293b;
+    margin-bottom:8px;
 }
 
-.variable-filter{
-background:white;
-padding:20px;
-border-radius:12px;
-margin-bottom:25px;
-box-shadow:0 5px 10px rgba(0,0,0,.1);
+.variable-header p{
+    color:#64748b;
 }
 
-.variable-filter select{
-padding:10px;
-width:220px;
-font-size:16px;
-border-radius:8px;
+.variable-card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.variable-card label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+.variable-card select{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.table-container{
+    overflow-x:auto;
 }
 
 .variable-table{
-width:100%;
-background:white;
-border-collapse:collapse;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-overflow:hidden;
-border-radius:12px;
+    width:100%;
+    min-width:900px;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.variable-table thead{
+    background:#2563eb;
 }
 
 .variable-table th{
-background:#2563eb;
-color:white;
-padding:15px;
+    color:white;
+    padding:15px;
+    text-align:left;
 }
 
 .variable-table td{
-padding:15px;
-text-align:center;
-border-bottom:1px solid #ddd;
+    padding:14px;
+    border-bottom:1px solid #e5e7eb;
 }
 
-.variable-table tr:hover{
-background:#f8fafc;
+.variable-table tbody tr:nth-child(even){
+    background:#f8fafc;
+}
+
+.variable-table tbody tr:hover{
+    background:#eef4ff;
+}
+
+.badge{
+    background:#2563eb;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.empty-row{
+    text-align:center;
+    padding:40px;
+    font-weight:bold;
+    color:#64748b;
+}
+
+@media(max-width:768px){
+
+.container{
+    flex-direction:column;
+}
+
+.content{
+    padding:15px;
+}
+
+.variable-header h1{
+    font-size:26px;
+}
+
+.variable-card{
+    padding:15px;
+}
+
+.variable-table{
+    min-width:700px;
+}
+
 }
