@@ -10,11 +10,20 @@ function History() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/history/")
-      .then((res) => setHistory(res.data))
-      .catch((err) => console.log(err));
+    loadHistory();
   }, []);
+
+  const loadHistory = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/api/history/"
+      );
+
+      setHistory(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -26,44 +35,70 @@ function History() {
 
         <main className="content">
 
-          <h1>Analysis History</h1>
+          <div className="history-header">
+            <h1>Analysis History</h1>
+            <p>All uploaded Python files and detected variables</p>
+          </div>
 
           <div className="history-card">
 
-            <table className="history-table">
+            <div className="table-container">
 
-              <thead>
-                <tr>
-                  <th>Filename</th>
-                  <th>Variable</th>
-                  <th>Line</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
+              <table className="history-table">
 
-              <tbody>
+                <thead>
 
-                {history.map((item) => (
-
-                  <tr key={item.id}>
-
-                    <td>{item.filename}</td>
-
-                    <td>{item.variable_name}</td>
-
-                    <td>{item.line_number}</td>
-
-                    <td>
-                      {new Date(item.timestamp).toLocaleString()}
-                    </td>
-
+                  <tr>
+                    <th>#</th>
+                    <th>Filename</th>
+                    <th>Variable</th>
+                    <th>Line</th>
+                    <th>Timestamp</th>
                   </tr>
 
-                ))}
+                </thead>
 
-              </tbody>
+                <tbody>
 
-            </table>
+                  {history.length > 0 ? (
+
+                    history.map((item, index) => (
+
+                      <tr key={item.id}>
+
+                        <td>{index + 1}</td>
+
+                        <td>{item.filename}</td>
+
+                        <td>{item.variable_name}</td>
+
+                        <td>{item.line_number}</td>
+
+                        <td>
+                          {new Date(item.timestamp).toLocaleString()}
+                        </td>
+
+                      </tr>
+
+                    ))
+
+                  ) : (
+
+                    <tr>
+
+                      <td colSpan="5" className="empty-row">
+                        No History Available
+                      </td>
+
+                    </tr>
+
+                  )}
+
+                </tbody>
+
+              </table>
+
+            </div>
 
           </div>
 
