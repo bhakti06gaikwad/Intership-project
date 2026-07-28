@@ -31,3 +31,12 @@ transition:.3s;
 .sidebar a:hover{
 background:#2563eb;
 }
+
+@media (max-width:768px){
+
+.sidebar{
+    width:100%;
+    height:auto;
+}
+
+}
