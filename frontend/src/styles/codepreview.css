@@ -1,0 +1,73 @@
+.code-preview {
+  margin-top: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #2563eb;
+  color: white;
+}
+
+.code-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.file-name {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.code-container {
+  background: #1e1e1e;
+  color: #ffffff;
+  padding: 15px;
+  max-height: 450px;
+  overflow-y: auto;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.code-line {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.line-number {
+  width: 50px;
+  color: #888;
+  text-align: right;
+  margin-right: 15px;
+  user-select: none;
+}
+
+.line-code {
+  flex: 1;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.code-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.code-container::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+.code-container::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.code-container::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
