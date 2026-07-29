@@ -1,17 +1,14 @@
-from parser.models import ExecutionEvent
+import sys
 
+execution_events = []
 
-def track_variable(variable_name, value, line_number):
-    
-  #  Save variable information into the database.
-  
+def trace(frame, event, arg):
+    if event == "line":
+        local_vars = frame.f_locals.copy()
 
-    ExecutionEvent.objects.create(
-        variable_name=variable_name,
-        line_number=line_number,
-        serialized_value=repr(value),
-    )
+        execution_events.append({
+            "line": frame.f_lineno,
+            "variables": local_vars
+        })
 
-    print(
-        f"[TRACK] {variable_name} = {value} (Line {line_number})"
-    )
+    return trace
