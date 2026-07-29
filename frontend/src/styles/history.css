@@ -42,6 +42,48 @@ font-weight:bold;
 padding:30px;
 
 }
+.history-actions{
+
+display:flex;
+justify-content:flex-end;
+margin-bottom:20px;
+
+}
+
+.export-btn{
+
+background:#16a34a;
+color:white;
+padding:12px 22px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+
+}
+
+.export-btn:hover{
+
+background:#15803d;
+
+}
+
+@media(max-width:768px){
+
+.history-actions{
+
+justify-content:center;
+
+}
+
+.export-btn{
+
+width:100%;
+
+}
+
+}
 
 @media(max-width:768px){
 
