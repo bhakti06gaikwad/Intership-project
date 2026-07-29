@@ -1,126 +1,66 @@
-.history-header{
-    margin-bottom:25px;
+.search-box{
+
+display:flex;
+gap:15px;
+margin-bottom:20px;
+align-items:center;
+flex-wrap:wrap;
+
 }
 
-.history-header h1{
-    font-size:34px;
-    color:#1e293b;
-    margin-bottom:8px;
+.search-box input{
+
+flex:1;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:16px;
+
 }
 
-.history-header p{
-    color:#64748b;
+.search-box button{
+
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+
 }
 
-.history-card{
-    background:#ffffff;
-    border-radius:12px;
-    padding:25px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
+.search-box button:hover{
 
-.table-container{
-    width:100%;
-    overflow-x:auto;
-}
+background:#1d4ed8;
 
-.history-table{
-    width:100%;
-    min-width:850px;
-    border-collapse:collapse;
-}
-
-.history-table thead{
-    background:#2563eb;
-}
-
-.history-table th{
-    color:white;
-    padding:15px;
-    text-align:left;
-    font-size:15px;
-}
-
-.history-table td{
-    padding:15px;
-    border-bottom:1px solid #e5e7eb;
-    color:#334155;
-}
-
-.history-table tbody tr:nth-child(even){
-    background:#f8fafc;
-}
-
-.history-table tbody tr:hover{
-    background:#eef4ff;
-    transition:.2s;
 }
 
 .empty-row{
-    text-align:center;
-    padding:40px;
-    font-weight:bold;
-    color:#64748b;
-}
 
-@media(max-width:992px){
-
-.history-header h1{
-    font-size:28px;
-}
-
-.history-card{
-    padding:20px;
-}
+text-align:center;
+font-weight:bold;
+padding:30px;
 
 }
 
 @media(max-width:768px){
 
-.container{
-    flex-direction:column;
-}
+.search-box{
 
-.content{
-    padding:15px;
-}
-
-.history-header h1{
-    font-size:24px;
-}
-
-.history-card{
-    padding:15px;
-}
-
-.history-table{
-    min-width:700px;
-}
+flex-direction:column;
 
 }
 
-@media(max-width:480px){
+.search-box input{
 
-.history-header{
-    text-align:center;
+width:100%;
+
 }
 
-.history-header h1{
-    font-size:22px;
-}
+.search-box button{
 
-.history-header p{
-    font-size:14px;
-}
+width:100%;
 
-.history-card{
-    padding:10px;
-}
-
-.history-table th,
-.history-table td{
-    padding:10px;
-    font-size:13px;
 }
 
 }
