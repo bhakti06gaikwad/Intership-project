@@ -7,7 +7,9 @@ import Sidebar from "../components/Sidebar";
 import "../styles/history.css";
 
 function History() {
+
   const [history, setHistory] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadHistory();
@@ -20,10 +22,16 @@ function History() {
       );
 
       setHistory(response.data);
+
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
+
+  const filteredHistory = history.filter((item) =>
+    item.filename.toLowerCase().includes(search.toLowerCase()) ||
+    item.variable_name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
@@ -36,8 +44,28 @@ function History() {
         <main className="content">
 
           <div className="history-header">
+
             <h1>Analysis History</h1>
-            <p>All uploaded Python files and detected variables</p>
+
+            <p>View all uploaded files and detected variables.</p>
+
+          </div>
+
+          <div className="search-box">
+
+            <input
+              type="text"
+              placeholder="Search by filename or variable..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <button
+              onClick={() => setSearch("")}
+            >
+              Clear
+            </button>
+
           </div>
 
           <div className="history-card">
@@ -49,20 +77,22 @@ function History() {
                 <thead>
 
                   <tr>
+
                     <th>#</th>
                     <th>Filename</th>
                     <th>Variable</th>
                     <th>Line</th>
                     <th>Timestamp</th>
+
                   </tr>
 
                 </thead>
 
                 <tbody>
 
-                  {history.length > 0 ? (
+                  {filteredHistory.length > 0 ? (
 
-                    history.map((item, index) => (
+                    filteredHistory.map((item, index) => (
 
                       <tr key={item.id}>
 
@@ -86,8 +116,11 @@ function History() {
 
                     <tr>
 
-                      <td colSpan="5" className="empty-row">
-                        No History Available
+                      <td
+                        colSpan="5"
+                        className="empty-row"
+                      >
+                        No Record Found
                       </td>
 
                     </tr>
@@ -105,6 +138,7 @@ function History() {
         </main>
 
       </div>
+
     </>
   );
 }
