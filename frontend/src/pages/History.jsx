@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { exportToCSV } from "../utils/exportCSV";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 
@@ -67,7 +67,18 @@ function History() {
             </button>
 
           </div>
+          <div className="history-actions">
 
+    <button
+        className="export-btn"
+        onClick={() =>
+            exportToCSV(filteredHistory, "Execution_History.csv")
+        }
+    >
+        Export CSV
+    </button>
+
+</div>
           <div className="history-card">
 
             <div className="table-container">
