@@ -2,65 +2,28 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
+import "../styles/timeline.css";
 
 function Timeline() {
   const [events, setEvents] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadTimeline();
+    axios
+      .get("http://127.0.0.1:8000/api/history/")
+      .then((res) => setEvents(res.data))
+      .catch((err) => console.log(err));
   }, []);
-
-  const loadTimeline = async () => {
-    try {
-      const response = await axios.get(
-        "http://127.0.0.1:8000/api/history/"
-      );
-
-      setEvents(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  };
-
-  const previousStep = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  const nextStep = () => {
-    if (currentIndex < events.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  if (loading) {
-    return (
-      <>
-        <Navbar />
-        <div className="container">
-          <Sidebar />
-          <main className="content">
-            <h2>Loading Timeline...</h2>
-          </main>
-        </div>
-      </>
-    );
-  }
 
   if (events.length === 0) {
     return (
       <>
         <Navbar />
         <div className="container">
-          <Sidebar />
+      
           <main className="content">
-            <h2>No Execution History Found</h2>
+            <h2>No Timeline Available</h2>
           </main>
         </div>
       </>
@@ -75,88 +38,87 @@ function Timeline() {
 
       <div className="container">
 
-        <Sidebar />
 
         <main className="content">
 
           <h1>Execution Timeline</h1>
 
-          <div className="upload-box">
+          <div className="timeline-box">
 
-            <h3>
-              Step {currentIndex + 1} / {events.length}
-            </h3>
+            <div className="timeline-top">
 
-            <input
-              type="range"
-              min="0"
-              max={events.length - 1}
-              value={currentIndex}
-              onChange={(e) =>
-                setCurrentIndex(Number(e.target.value))
-              }
-              style={{
-                width: "100%",
-                marginTop: "15px",
-                marginBottom: "20px",
-              }}
-            />
+              <h3>
+                Step {currentIndex + 1} of {events.length}
+              </h3>
 
-            <div className="cards">
-
-              <div className="card">
-                <h3>Filename</h3>
-                <p>{event.filename}</p>
-              </div>
-
-              <div className="card">
-                <h3>Variable</h3>
-                <p>{event.variable_name}</p>
-              </div>
-
-              <div className="card">
-                <h3>Line</h3>
-                <p>{event.line_number}</p>
-              </div>
-
-              <div className="card">
-                <h3>Value</h3>
-                <p>{event.serialized_value}</p>
-              </div>
+              <input
+                type="range"
+                min="0"
+                max={events.length - 1}
+                value={currentIndex}
+                onChange={(e) =>
+                  setCurrentIndex(Number(e.target.value))
+                }
+              />
 
             </div>
 
-            <br />
+            <table className="timeline-table">
 
-            <div className="card">
+              <tbody>
 
-              <h3>Timestamp</h3>
+                <tr>
+                  <th>Filename</th>
+                  <td>{event.filename}</td>
+                </tr>
 
-              <p>{event.timestamp}</p>
+                <tr>
+                  <th>Variable</th>
+                  <td>{event.variable_name}</td>
+                </tr>
+
+                <tr>
+                  <th>Line Number</th>
+                  <td>{event.line_number}</td>
+                </tr>
+
+                <tr>
+                  <th>Value</th>
+                  <td>{event.serialized_value}</td>
+                </tr>
+
+                <tr>
+                  <th>Timestamp</th>
+                  <td>
+                    {new Date(event.timestamp).toLocaleString()}
+                  </td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+            <div className="timeline-buttons">
+
+              <button
+                onClick={() => setCurrentIndex(currentIndex - 1)}
+                disabled={currentIndex === 0}
+              >
+                ◀ Previous
+              </button>
+
+              <button
+                onClick={() => setCurrentIndex(currentIndex + 1)}
+                disabled={currentIndex === events.length - 1}
+              >
+                Next ▶
+              </button>
 
             </div>
-
-            <br />
-
-            <button
-              onClick={previousStep}
-              disabled={currentIndex === 0}
-            >
-              Previous
-            </button>
-
-            <button
-              onClick={nextStep}
-              disabled={currentIndex === events.length - 1}
-              style={{ marginLeft: "15px" }}
-            >
-              Next
-            </button>
 
           </div>
 
         </main>
-
       </div>
     </>
   );
