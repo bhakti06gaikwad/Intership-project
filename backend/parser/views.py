@@ -8,7 +8,6 @@ from .models import ExecutionEvent
 from .serializers import ExecutionEventSerializer
 
 
-# Upload API view
 class FileUploadAPIView(APIView):
 
     def post(self, request):
@@ -26,35 +25,33 @@ class FileUploadAPIView(APIView):
         result = analyze_python_code(code)
 
         for variable in result["variables"]:
-           ExecutionEvent.objects.create(
-           filename=uploaded_file.name,
-           variable_name=variable,
-           line_number=0,
-           serialized_value="Detected by AST",
-        )
+         ExecutionEvent.objects.create(
+          filename=uploaded_file.name,
+          variable_name=variable["name"],
+          line_number=variable["line"],
+          serialized_value="Detected by AST",
+    )
 
         return Response({
-            "status": "success",
-            "filename": uploaded_file.name,
-            "variables": result["variables"],
-            "functions": result["functions"],
-            "variable_count": result["variable_count"],
-            "function_count": result["function_count"]
-        })
+    "status": "success",
+    "filename": uploaded_file.name,
+    "variables": [v["name"] for v in result["variables"]],
+    "functions": [f["name"] for f in result["functions"]],
+    "variable_count": result["variable_count"],
+    "function_count": result["function_count"]
+})
 
 
-# History API view
 class HistoryAPIView(ListAPIView):
     queryset = ExecutionEvent.objects.all().order_by("-timestamp")
     serializer_class = ExecutionEventSerializer
 
 
-# Timeline API view
 class TimelineAPIView(ListAPIView):
     queryset = ExecutionEvent.objects.all().order_by("-timestamp")
     serializer_class = ExecutionEventSerializer
 
-# variable inspector view
+
 class VariableInspectorAPIView(APIView):
 
     def get(self, request):
@@ -73,7 +70,6 @@ class VariableInspectorAPIView(APIView):
 
         return Response(serializer.data)
 
-# Dashboard API view
 class DashboardStatsAPIView(APIView):
 
     def get(self, request):
