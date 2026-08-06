@@ -2,7 +2,6 @@ import ast
 
 
 class VariableVisitor(ast.NodeVisitor):
-
     def __init__(self):
         self.variables = []
         self.functions = []
@@ -14,21 +13,25 @@ class VariableVisitor(ast.NodeVisitor):
                     "name": target.id,
                     "line": node.lineno
                 })
+
         self.generic_visit(node)
 
     def visit_FunctionDef(self, node):
-        self.functions.append(node.name)
+        self.functions.append({
+            "name": node.name,
+            "line": node.lineno
+        })
+
         self.generic_visit(node)
 
 
 def analyze_python_code(code):
-
     tree = ast.parse(code)
 
     visitor = VariableVisitor()
-
     visitor.visit(tree)
-
+    
+    print(visitor.variables)
     return {
         "variables": visitor.variables,
         "functions": visitor.functions,
