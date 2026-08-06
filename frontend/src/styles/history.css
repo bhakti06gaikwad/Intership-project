@@ -76,6 +76,22 @@
   background: #eef4ff;
 }
 
+.empty-state{
+    text-align:center;
+    padding:40px;
+}
+
+.empty-state h3{
+    color:#2563eb;
+    margin-bottom:10px;
+    font-size:24px;
+}
+
+.empty-state p{
+    color:#6b7280;
+    font-size:16px;
+}
+
 @media (max-width: 768px) {
 
   .history-toolbar {
