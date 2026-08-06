@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 import StatsCard from "../components/StatsCard";
 import CodePreview from "../components/CodePreview";
 import Charts from "../components/Charts";
+import Loading from "../components/Loading";
 
 import "../styles/dashboard.css";
 import "../styles/codepreview.css";
@@ -13,6 +14,7 @@ import "../styles/codepreview.css";
 function Dashboard() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [code, setCode] = useState("");
   const [filename, setFilename] = useState("");
@@ -30,13 +32,20 @@ function Dashboard() {
   }, []);
 
   const loadDashboard = () => {
-    axios
-      .get("http://127.0.0.1:8000/api/dashboard/")
-      .then((res) => {
-        setStats(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
+  setLoading(true);
+
+  axios
+    .get("http://127.0.0.1:8000/api/dashboard/")
+    .then((res) => {
+      setStats(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+};
 
   const uploadFile = async () => {
     if (!file) {
@@ -80,10 +89,11 @@ function Dashboard() {
       <Navbar />
 
       <div className="container">
-        <Sidebar />
+      
 
         <main className="content">
           <h1>PyChronicle Dashboard</h1>
+          {loading && <Loading />}
 
           <div className="upload-box">
             <h2>Upload Python File</h2>
