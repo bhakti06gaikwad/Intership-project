@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 
 import "../styles/history.css";
 
@@ -99,7 +99,6 @@ function History() {
       <Navbar />
 
       <div className="container">
-        <Sidebar />
 
         <main className="content">
           <h1>Analysis History</h1>
@@ -150,15 +149,14 @@ function History() {
                   ))
                 ) : (
                   <tr>
-                    <td
-                      colSpan="5"
-                      style={{
-                        textAlign: "center",
-                        padding: "20px",
-                      }}
-                    >
-                      No Record Found
-                    </td>
+                   <td colSpan="5">
+  <div className="empty-state">
+    <h3>No Records Found</h3>
+    <p>
+      Upload a Python file to view execution history.
+    </p>
+  </div>
+</td>
                   </tr>
                 )}
               </tbody>
