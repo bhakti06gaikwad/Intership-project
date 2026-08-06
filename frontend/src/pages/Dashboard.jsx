@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import StatsCard from "../components/StatsCard";
 import CodePreview from "../components/CodePreview";
+import Charts from "../components/Charts";
 
 import "../styles/dashboard.css";
 import "../styles/codepreview.css";
@@ -163,25 +164,59 @@ function Dashboard() {
             />
 
           </div>
+          <Charts
+            stats={stats}
+            result={result}
+          />
 
-          <div className="dashboard-box">
+          
+            <div className="dashboard-box">
 
-            <h2>Recent Upload</h2>
+              <h2>Execution Summary</h2>
 
-            <p>
-              <strong>Filename :</strong>{" "}
-              {stats.latest_file || "No file"}
-            </p>
+              <div className="summary-grid">
 
-            <p>
-              <strong>Uploaded :</strong>{" "}
-              {stats.latest_time
-                ? new Date(stats.latest_time).toLocaleString()
-                : "-"}
-            </p>
+                <div className="summary-card">
+                  <h3>Total Uploads</h3>
+                  <p>{stats.uploads}</p>
+                </div>
 
-          </div>
+                <div className="summary-card">
+                  <h3>Total Variables</h3>
+                  <p>{stats.variables}</p>
+                </div>
 
+                <div className="summary-card">
+                  <h3>Total Events</h3>
+                  <p>{stats.events}</p>
+                </div>
+
+                <div className="summary-card">
+                  <h3>Latest File</h3>
+                  <p>{stats.latest_file || "-"}</p>
+                </div>
+
+              </div>
+
+              <div className="latest-info">
+
+                <p>
+                  <strong>Latest Upload:</strong>{" "}
+                  {stats.latest_time
+                    ? new Date(stats.latest_time).toLocaleString()
+                    : "-"}
+                </p>
+
+              </div>
+
+              <button
+                className="print-btn"
+                onClick={() => window.print()}
+              >
+                Print Summary
+              </button>
+
+            </div>
         </main>
       </div>
     </>
