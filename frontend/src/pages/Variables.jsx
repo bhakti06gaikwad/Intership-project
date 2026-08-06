@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 
 import "../styles/variables.css";
 
@@ -44,7 +44,6 @@ function Variables() {
 
       <div className="container">
 
-        <Sidebar />
 
         <main className="content">
 
