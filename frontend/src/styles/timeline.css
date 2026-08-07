@@ -4,7 +4,7 @@
 
 .timeline-box{
     background:#fff;
-    padding:30px; 
+    padding:30px;
     border-radius:12px;
     box-shadow:0 4px 12px rgba(0,0,0,.1);
 }
@@ -85,6 +85,24 @@
 .export-json-btn:hover {
   background: #15803d;
   transform: translateY(-2px);
+}
+.timeline-search {
+    margin: 20px 0;
+}
+
+.timeline-search input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.timeline-search input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 5px rgba(37,99,235,.25);
 }
 @media (max-width:768px){
 
