@@ -1,97 +1,134 @@
-# PyChronicle
-### AST-Powered Time-Travel Debugger for Python
+# 🚀 PyChronicle
 
-PyChronicle is a developer tool that enables **time-travel debugging** for Python applications. Instead of restarting a program after every bug, developers can replay execution, inspect previous variable states, and navigate through program history.
+## AST-Powered Python Code Analysis & Execution History System
 
----
-
-## Project Overview
-
-Traditional Python debuggers are linear—they allow developers to move forward through execution only.
-
-PyChronicle records every important execution event and stores variable changes in a timeline. This allows developers to move backward and forward in time without rerunning the program.
-
-The project combines Python's **Abstract Syntax Tree (AST)**, **sys.settrace**, and a **Django REST backend** to provide an advanced debugging experience.
+PyChronicle is a Django + React based developer tool that analyzes Python source code using Python's Abstract Syntax Tree (AST). It detects variables, functions, stores execution history, visualizes timelines, and provides an interactive dashboard for code analysis.
 
 ---
 
-# Features
+# 📌 Features
 
--  AST Parsing
--  AST Rewriting
--  Runtime Execution Tracing
--  Variable History Tracking
--  Time-Travel Debugging
--  Execution Timeline
--  Project Management
--  JWT Authentication
--  REST API
--  Execution Reports
--  Docker Support
--  Swagger API Documentation
+✅ Upload Python (.py) Files
+
+✅ AST Parsing
+
+✅ Variable Detection
+
+✅ Function Detection
+
+✅ Execution History
+
+✅ Variable Inspector
+
+✅ Execution Timeline
+
+✅ Dashboard Analytics
+
+✅ Code Preview
+
+✅ CSV Export
+
+✅ JSON Export
+
+✅ Dark / Light Theme
+
+✅ Responsive UI
 
 ---
 
-# Tech Stack
+# 📸 Screenshots
+
+## Dashboard
+
+> Add screenshot here
+
+```
+docs/dashboard.png
+```
+
+---
+
+## History
+
+> Add screenshot here
+
+```
+docs/history.png
+```
+
+---
+
+## Timeline
+
+> Add screenshot here
+
+```
+docs/timeline.png
+```
+
+---
+
+## Variable Inspector
+
+> Add screenshot here
+
+```
+docs/variables.png
+```
+
+---
+
+# 🛠 Tech Stack
 
 ## Backend
 
-- Python 3.12
+- Python 3
 - Django
 - Django REST Framework
 - SQLite
-- PostgreSQL
-- JWT Authentication
+- Python AST Module
 
 ## Frontend
 
 - React
-- TypeScript
-- Tailwind CSS
-- Monaco Editor
-
-## DevOps
-
-- Docker
-- GitHub Actions
-- Nginx
+- JavaScript
+- Axios
+- Chart.js
+- CSS3
 
 ---
 
-# Project Structure
+# 📂 Project Structure
 
 ```
 PyChronicle/
 │
 ├── backend/
 │   ├── config/
-│   ├── authentication/
-│   ├── users/
 │   ├── parser/
-│   ├── tracer/
 │   ├── execution/
 │   ├── timeline/
-│   ├── debugger/
 │   ├── analytics/
 │   ├── reports/
-│   └── api/
+│   ├── users/
+│   ├── authentication/
+│   ├── tracer/
+│   └── debugger/
 │
 ├── frontend/
-├── docker/
+│
 ├── docs/
-├── scripts/
-├── tests/
 │
 ├── README.md
-├── LICENSE
-└── docker-compose.yml
+│
+└── LICENSE
 ```
 
 ---
 
-# Installation
+# ⚙ Installation
 
-Clone the repository
+Clone repository
 
 ```bash
 git clone https://github.com/yourusername/PyChronicle.git
@@ -103,13 +140,13 @@ Move into project
 cd PyChronicle
 ```
 
-Create virtual environment
+Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate environment
+Activate
 
 Windows
 
@@ -117,7 +154,7 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux/Mac
+Linux
 
 ```bash
 source venv/bin/activate
@@ -126,10 +163,10 @@ source venv/bin/activate
 Install dependencies
 
 ```bash
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
 
-Run Django Server
+Run Backend
 
 ```bash
 cd backend
@@ -139,67 +176,82 @@ python manage.py migrate
 python manage.py runserver
 ```
 
----
+Run Frontend
 
-# Development Roadmap
+```bash
+cd frontend
 
-### Phase 1
-- Project Setup
-- Authentication
-- REST Framework
-- Project Management
+npm install
 
-### Phase 2
-- AST Parser
-- AST Rewriter
-- Code Instrumentation
-
-### Phase 3
-- Execution Tracer
-- Variable Tracking
-- Timeline Storage
-
-### Phase 4
-- Time Travel Engine
-- Replay Execution
-- State Comparison
-
-### Phase 5
-- React Dashboard
-- Monaco Editor
-- Timeline UI
-
-### Phase 6
-- Docker Deployment
-- CI/CD
-- Testing
-- Documentation
+npm run dev
+```
 
 ---
 
-# Future Enhancements
+# 📊 Modules
 
+## Dashboard
+
+- Upload Python files
+- Dashboard statistics
+- Charts
+- Code preview
+- Execution summary
+
+---
+
+## History
+
+- View execution records
+- Search variables
+- Search filenames
+- CSV Export
+
+---
+
+## Timeline
+
+- Timeline slider
+- Previous / Next navigation
+- JSON Export
+- Search execution history
+
+---
+
+## Variable Inspector
+
+- Variable filtering
+- Variable history
+- Variable statistics
+
+---
+
+# 📈 Current Project Status
+
+✔ Dashboard Completed
+
+✔ History Completed
+
+✔ Timeline Completed
+
+✔ Variable Inspector Completed
+
+✔ Backend REST APIs Completed
+
+✔ Responsive Design Completed
+
+✔ Dark Mode Completed
+
+---
+
+# 🚀 Future Enhancements
+
+- AST Tree Viewer
+- Runtime Variable Tracking
+- Time Travel Debugging
 - AI Bug Explanation
-- Live Code Collaboration
-- Cloud Execution
-- Multi-language Debugging
+- Monaco Code Editor
+- Docker Deployment
 - VS Code Extension
 
 ---
-
-# Current Status
-
- Under Active Development
-
----
-
-# Contributing
-
-Contributions, issues, and feature requests are welcome.
-
-1. Fork the repository.
-2. Create a new feature branch.
-3. Commit your changes.
-4. Push to your branch.
-5. Open a Pull Request.
-
