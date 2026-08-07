@@ -8,11 +8,16 @@ import "../styles/timeline.css";
 function Timeline() {
   const [events, setEvents] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/api/history/")
-      .then((res) => setEvents(res.data))
+      .then((res) => {
+           setEvents(res.data);
+          setFilteredEvents(res.data);
+        })
       .catch((err) => console.log(err));
   }, []);
 
@@ -29,8 +34,39 @@ function Timeline() {
       </>
     );
   }
+  const exportJSON = () => {
+  const blob = new Blob(
+    [JSON.stringify(events, null, 2)],
+    { type: "application/json" }
+  );
 
-  const event = events[currentIndex];
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "timeline.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+};
+
+const handleSearch = (value) => {
+  setSearch(value);
+
+  const keyword = value.toLowerCase();
+
+  const filtered = events.filter((item) => {
+    return (
+      item.filename.toLowerCase().includes(keyword) ||
+      item.variable_name.toLowerCase().includes(keyword)
+    );
+  });
+
+  setFilteredEvents(filtered);
+  setCurrentIndex(0);
+};
+
+  const event = filteredEvents[currentIndex];
 
   return (
     <>
@@ -47,21 +83,28 @@ function Timeline() {
 
             <div className="timeline-top">
 
-              <h3>
-                Step {currentIndex + 1} of {events.length}
-              </h3>
+ <h3>
+  Step {currentIndex + 1} of {filteredEvents.length}
+</h3>
 
-              <input
-                type="range"
-                min="0"
-                max={events.length - 1}
-                value={currentIndex}
-                onChange={(e) =>
-                  setCurrentIndex(Number(e.target.value))
-                }
-              />
+  <button
+    className="export-json-btn"
+    onClick={exportJSON}
+  >
+    Export JSON
+  </button>
 
-            </div>
+  <input
+  type="range"
+  min="0"
+  max={filteredEvents.length - 1}
+  value={currentIndex}
+  onChange={(e) =>
+    setCurrentIndex(Number(e.target.value))
+  }
+/>
+
+</div>
 
             <table className="timeline-table">
 
@@ -109,7 +152,7 @@ function Timeline() {
 
               <button
                 onClick={() => setCurrentIndex(currentIndex + 1)}
-                disabled={currentIndex === events.length - 1}
+                disabled={currentIndex === filteredEvents.length - 1}
               >
                 Next ▶
               </button>
