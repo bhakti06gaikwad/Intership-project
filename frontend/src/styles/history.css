@@ -39,7 +39,7 @@
 }
 
 .history-card {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,.08);
   overflow-x: auto;
@@ -92,6 +92,52 @@
     font-size:16px;
 }
 
+/* ===========================
+   Dark Theme
+=========================== */
+
+body.dark .history-card{
+    background:#1e293b;
+}
+
+body.dark .search-input{
+    background:#334155;
+    color:white;
+    border:1px solid #475569;
+}
+
+body.dark .search-input::placeholder{
+    color:#cbd5e1;
+}
+
+body.dark .history-table{
+    color:white;
+}
+
+body.dark .history-table tbody td{
+    color:white;
+    border-bottom:1px solid #475569;
+}
+
+body.dark .history-table tbody tr:nth-child(odd){
+    background:#1e293b;
+}
+
+body.dark .history-table tbody tr:nth-child(even){
+    background:#334155;
+}
+
+body.dark .history-table tbody tr:hover{
+    background:#475569;
+}
+
+body.dark .empty-state h3{
+    color:#60a5fa;
+}
+
+body.dark .empty-state p{
+    color:#cbd5e1;
+}
 @media (max-width: 768px) {
 
   .history-toolbar {
