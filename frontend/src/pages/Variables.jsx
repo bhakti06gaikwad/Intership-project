@@ -3,12 +3,12 @@ import axios from "axios";
 
 import Navbar from "../components/Navbar";
 
-
 import "../styles/variables.css";
 
 function Variables() {
   const [history, setHistory] = useState([]);
   const [selectedVariable, setSelectedVariable] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadVariables();
@@ -31,7 +31,13 @@ function Variables() {
   };
 
   const variables = [
-    ...new Set(history.map((item) => item.variable_name)),
+    ...new Set(
+      history
+        .map((item) => item.variable_name)
+        .filter((variable) =>
+          variable.toLowerCase().includes(search.toLowerCase())
+        )
+    ),
   ];
 
   const filteredHistory = history.filter(
@@ -44,22 +50,27 @@ function Variables() {
 
       <div className="container">
 
-
         <main className="content">
 
           <div className="variable-header">
-
             <h1>Variable Inspector</h1>
 
             <p>
               View complete execution history of each detected variable.
             </p>
-
           </div>
 
           <div className="variable-card">
 
             <label>Select Variable</label>
+
+            <input
+              type="text"
+              placeholder="Search Variable..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="variable-search"
+            />
 
             <select
               value={selectedVariable}
@@ -73,6 +84,20 @@ function Variables() {
                 </option>
               ))}
             </select>
+
+          </div>
+
+          <div className="variable-stats">
+
+            <div className="stat-card">
+              <h3>Total Variables</h3>
+              <p>{variables.length}</p>
+            </div>
+
+            <div className="stat-card">
+              <h3>Records</h3>
+              <p>{filteredHistory.length}</p>
+            </div>
 
           </div>
 
