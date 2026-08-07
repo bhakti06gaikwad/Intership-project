@@ -1,3 +1,7 @@
+/* ===========================
+   Navbar
+=========================== */
+
 .navbar{
     height:65px;
     background:#1e3a8a;
@@ -32,6 +36,22 @@
 .nav-links a:hover{
     background:rgba(255,255,255,.15);
     color:#ffffff;
+}
+
+.theme-btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+transition:.3s;
+margin-left:15px;
+}
+
+.theme-btn:hover{
+background:#1d4ed8;
 }
 
 @media (max-width:768px){
