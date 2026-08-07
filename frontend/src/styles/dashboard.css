@@ -1,3 +1,46 @@
+body.dark .content h1{
+    color:#ffffff;
+}
+body.dark .upload-box{
+    background:#1e293b;
+}
+
+body.dark .upload-box h2{
+    color:white;
+}
+
+body.dark input[type="file"]{
+    color:white;
+}
+body.dark .result-box{
+    background:#1e293b;
+    color:white;
+}
+
+body.dark .result-box h2,
+body.dark .result-box h3,
+body.dark .result-box p,
+body.dark .result-box li{
+    color:white;
+}
+body.dark .dashboard-box{
+    background:#1e293b;
+    color:white;
+}
+
+body.dark .summary-card{
+    background:#334155;
+    color:white;
+}
+
+body.dark .summary-card h3,
+body.dark .summary-card p{
+    color:white;
+}
+/* ===========================
+   Layout
+=========================== */
+
 .content{
     min-height:calc(100vh - 65px);
     padding:30px;
@@ -7,11 +50,20 @@
     flex: 1;
     padding: 30px;
 }
+
+/* ===========================
+   Heading
+=========================== */
+
 .content h1 {
     font-size: 34px;
     color: #1e293b;
     margin-bottom: 25px;
 }
+
+/* ===========================
+   Upload Box
+=========================== */
 
 .upload-box {
     background: #ffffff;
@@ -49,6 +101,9 @@
     background: #1d4ed8;
 }
 
+/* ===========================
+   Analysis Result
+=========================== */
 
 .result-box {
     background: white;
@@ -74,6 +129,10 @@
     margin-bottom: 20px;
 }
 
+/* ===========================
+   Statistics Cards
+=========================== */
+
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
@@ -81,6 +140,10 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+/* ===========================
+   Charts
+=========================== */
 
 .charts-grid {
     display: grid;
@@ -106,6 +169,10 @@
     height: 320px !important;
 }
 
+/* ===========================
+   Recent Upload
+=========================== */
+
 .dashboard-box {
     background: white;
     padding: 20px;
@@ -123,10 +190,18 @@
     margin: 10px 0;
 }
 
+/* ===========================
+   Code Preview
+=========================== */
+
 .code-preview {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+/* ===========================
+   Summary Cards
+=========================== */
 
 .summary-grid{
     display:grid;
@@ -161,11 +236,18 @@
     color:#2563eb;
 }
 
+/* ===========================
+   Latest Upload
+=========================== */
 
 .latest-info{
     margin:20px 0;
     font-size:16px;
 }
+
+/* ===========================
+   Print Button
+=========================== */
 
 .print-btn{
     background:#2563eb;
@@ -182,6 +264,9 @@
     background:#1d4ed8;
 }
 
+/* ===========================
+   Card Hover Effect
+=========================== */
 
 .cards > *{
     transition:.3s;
@@ -192,6 +277,9 @@
     box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
 
+/* ===========================
+   Print
+=========================== */
 
 @media print{
 
@@ -211,6 +299,10 @@ body{
 }
 
 }
+
+/* ===========================
+   Responsive
+=========================== */
 
 @media (max-width:992px){
 
