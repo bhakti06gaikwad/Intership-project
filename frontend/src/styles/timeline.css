@@ -1,3 +1,7 @@
+.table-container{
+    overflow-x:auto;
+}
+
 .timeline-box{
     background:#fff;
     padding:30px;
@@ -65,6 +69,23 @@
     cursor:not-allowed;
 }
 
+
+.export-json-btn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+  margin: 10px 0;
+}
+
+.export-json-btn:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
 @media (max-width:768px){
 
 .container{
