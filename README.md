@@ -40,7 +40,8 @@ PyChronicle is a Django + React based developer tool that analyzes Python source
 
 ## Dashboard
 
-> Add screenshot here
+> <img width="1857" height="909" alt="image" src="https://github.com/user-attachments/assets/ef021ec5-d9b7-45a2-8ee3-194ded85e6ee" />
+
 
 ```
 docs/dashboard.png
@@ -50,7 +51,8 @@ docs/dashboard.png
 
 ## History
 
-> Add screenshot here
+><img width="1851" height="622" alt="image" src="https://github.com/user-attachments/assets/1a5f504f-5711-454a-8e43-7ed5cf094b61" />
+
 
 ```
 docs/history.png
@@ -60,7 +62,8 @@ docs/history.png
 
 ## Timeline
 
-> Add screenshot here
+> <img width="1853" height="903" alt="image" src="https://github.com/user-attachments/assets/8d3b4de2-816c-4521-ab48-35223f10805c" />
+
 
 ```
 docs/timeline.png
@@ -70,7 +73,8 @@ docs/timeline.png
 
 ## Variable Inspector
 
-> Add screenshot here
+> <img width="1853" height="889" alt="image" src="https://github.com/user-attachments/assets/16991149-bc93-487a-9204-ef361011bcec" />
+
 
 ```
 docs/variables.png
